@@ -1,0 +1,8 @@
+/*
+wp-content/*
+wp-content/plugins/*
+
+!.gitignore
+!wp-content/
+!wp-content/plugins/
+!wp-content/plugins/wpixel/
