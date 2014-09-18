@@ -12,6 +12,13 @@ class Admin_Core {
 
     }
 
+    public static function get_base_img_url() {
+        $id = intval($_GET['attachmentId']);
+        $post = get_post($id);
+        echo $post->guid;
+        die();
+    }
+
     public static function enqueue_scripts() {
         wp_enqueue_script(WPIXEL_SLUG . "_feather");
         wp_enqueue_script(WPIXEL_SLUG . "_wpixel");

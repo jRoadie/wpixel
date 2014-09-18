@@ -1,4 +1,4 @@
-(function($) {
+jQuery(function($) {
     var FeatherEditor = new Aviary.Feather({
         apiKey: 'yourkey',
         apiVersion: 3,
@@ -23,24 +23,29 @@
                     $li.find('img').attr('id', imgId);
                 }
                 var $preview = $(this).find('.attachment-preview');
-                $preview.on('mouseenter.wpixel', function() {
+                $li.on('mouseenter.wpixel', function() {
                     var $wpixelIcon = $('<span class="wpixel-icon">WPixel</span>');
-                    $preview.append($wpixelIcon.css({
+                    $preview.after($wpixelIcon.css({
                         position: 'absolute',
                         top: 0,
                         right: 0
                     }));
                     $wpixelIcon.click(function() {
-                        FeatherEditor.launch({
-                            image: imgId,
-                            url: $li.find('img').attr('src')
+                        $.get(ajaxurl, {
+                            action: 'base_img_url',
+                            attachmentId: $li.data('id')
+                        }, function(url) {
+                            FeatherEditor.launch({
+                                image: imgId,
+                                url: url
+                            });
                         });
                     });
                 });
-                $preview.on('mouseleave.wpixel', function() {
-                    $preview.find('.wpixel-icon').remove();
+                $li.on('mouseleave.wpixel', function() {
+                    $preview.siblings('.wpixel-icon').remove();
                 });
             }
         });
     }, 1000);
-})(jQuery);
+});
