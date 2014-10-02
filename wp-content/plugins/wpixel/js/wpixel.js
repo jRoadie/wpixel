@@ -4,9 +4,16 @@ jQuery(function($) {
         apiVersion: 3,
         openType: 'lightbox',
         tools: 'all',
-        onSave: function (imageID, newURL) {
-            var img = document.getElementById(imageID);
-            img.src = newURL;
+        onSaveButtonClicked: function(imgId) {
+            $.ajax({
+                url: ajaxurl,
+                type: 'post',
+                data: {action: 'wpixel_save', content: document.getElementById('avpw_canvas_element').toDataURL()},
+                success: function(resp) {
+                    console.log(resp.substring(0, 10))
+                }
+            });
+            return false;
         }
     });
 

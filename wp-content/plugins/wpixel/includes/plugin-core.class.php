@@ -24,6 +24,7 @@ class Plugin_Core {
     private static function define_admin_hooks() {
         add_action('load-upload.php', array('wpixel\admin\Admin_Core', 'add_wpixel_action'));
         add_action('wp_ajax_base_img_url', array('wpixel\admin\Admin_Core', 'get_base_img_url'));
+        add_action('wp_ajax_wpixel_save', array('wpixel\admin\Admin_Core', 'save'));
     }
 
     public static function get_image_sizes() {

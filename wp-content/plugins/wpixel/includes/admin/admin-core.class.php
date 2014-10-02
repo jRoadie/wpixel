@@ -19,6 +19,13 @@ class Admin_Core {
         die();
     }
 
+    public static function save() {
+        $content = $_POST['content'];
+        $img = substr($content, strpos($content, 'base64,') + 7);
+        echo $img;
+        die();
+    }
+
     public static function enqueue_scripts() {
         wp_enqueue_script(WPIXEL_SLUG . "_feather");
         wp_enqueue_script(WPIXEL_SLUG . "_wpixel");
